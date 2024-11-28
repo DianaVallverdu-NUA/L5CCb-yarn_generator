@@ -96,7 +96,3 @@ function drawYarn() {
     drawnSegments.push(segment);
   }
 }
-
-function mouseClicked() {
-  draw();
-}
