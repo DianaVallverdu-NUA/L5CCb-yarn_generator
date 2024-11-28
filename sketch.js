@@ -7,14 +7,14 @@ const colorPalette = ["#f542d4", "#42f57b", "#42f5e9", "#4e42f5", "#c242f5"];
 
 let numberOfSegments = 0;
 
-let horizontalSegments = [];
-let verticalSegments = [];
+let drawnSegments = [];
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
   frameRate(1);
   background(220);
   strokeWeight(2);
+  noLoop();
 }
 
 function drawVerticalLine(x0, y0, y1) {
@@ -70,16 +70,17 @@ function draw() {
     // calculate space it occupies
     let y0 = random(height);
     let segmentHeight = min(random(height - y0), 100);
+    let segment = new Segment(false, y0, segmentHeight);
 
-    while (isOverLappingHorizontal(y0, y0 + segmentHeight)) {
+    while (segment.isOverlapping(drawnSegments)) {
       y0 = random(height);
       segmentHeight = min(random(height - y0), 100);
+      segment = new Segment(false, y0, segmentHeight);
     }
 
-    const segment = new Segment(false, y0, segmentHeight);
     segment.draw();
 
-    horizontalSegments.push([y0, y0 + segmentHeight]);
+    drawnSegments.push(segment);
   }
 
   //draw vertically
@@ -87,23 +88,28 @@ function draw() {
     //calculate space it occupies
     let x0 = random(width);
     let segmentWidth = min(random(width - x0), 150);
+    let segment = new Segment(true, x0, segmentWidth);
 
-    //ensure no overlap
-    while (isOverlappingVertical(x0, x0 + segmentWidth)) {
+    while (segment.isOverlapping(drawnSegments)) {
       x0 = random(width);
       segmentWidth = min(random(width - x0), 150);
+      segment = new Segment(true, x0, segmentWidth);
     }
-    
-    const segment = new Segment(true, x0, segmentWidth);
+
     segment.draw();
 
-    verticalSegments.push([x0, x0 + segmentWidth]);
+    drawnSegments.push(segment);
   }
 
   //update counter and stop if needed
   numberOfSegments++;
   if (numberOfSegments > 5) {
     numberOfSegments = 0;
+    drawnSegments = [];
     background(220);
   }
+}
+
+function mouseClicked() {
+  draw();
 }
