@@ -1,6 +1,6 @@
 # Yarn Generator
 
-Creative computing meets textile in this little project, where students are asked to generate a Yarn Wrap using loops, randomness and Perlin Noise. You can see the expected outcome [in this webpage](https://dianavallverdu-nua.github.io/yarn-generator/).
+Creative computing meets textile in this little project, where students are asked to generate a Yarn Wrap using loops, randomness and Perlin Noise. You can see the expected outcome [in this webpage](https://dianavallverdu-nua.github.io/yarn_generator/).
 
 # Suggested Approach
 
