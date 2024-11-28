@@ -76,10 +76,8 @@ function draw() {
       segmentHeight = min(random(height - y0), 100);
     }
 
-    //draw a line every 2 pixels
-    for (let i = 0; i < segmentHeight / threadSpace; i++) {
-      drawHorizontalLine(y0 + threadSpace * i, 0, width);
-    }
+    const segment = new Segment(false, y0, segmentHeight);
+    segment.draw();
 
     horizontalSegments.push([y0, y0 + segmentHeight]);
   }
@@ -95,11 +93,9 @@ function draw() {
       x0 = random(width);
       segmentWidth = min(random(width - x0), 150);
     }
-
-    //draw a line every 4 pixels
-    for (let i = 0; i < segmentWidth / threadSpace; i++) {
-      drawVerticalLine(x0 + threadSpace * i, 0, height);
-    }
+    
+    const segment = new Segment(true, x0, segmentWidth);
+    segment.draw();
 
     verticalSegments.push([x0, x0 + segmentWidth]);
   }
