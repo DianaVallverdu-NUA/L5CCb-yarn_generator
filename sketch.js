@@ -4,7 +4,7 @@ const canvasHeight = 300;
 const numberOfRows = canvasHeight / 4;
 const numberOfCols = canvasWidth / 4;
 
-const colorPalette = ["#f542d4", "#42f57b", "#42f5e9", "#4e42f5", "#c242f5"]
+const colorPalette = ["#f542d4", "#42f57b", "#42f5e9", "#4e42f5", "#c242f5"];
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
