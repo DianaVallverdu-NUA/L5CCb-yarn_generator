@@ -15,24 +15,34 @@ function draw() {
   background(220);
   strokeWeight(2);
 
-  for (let col = 0; col < numberOfCols; col++) {
+  //direction 0 means horizontal, direction 1 means vertical
+  const vertical = random(1) < 0.5;
 
-    const color = random(colorPalette);
-    stroke(color);
+  //got color for this bit
+  const color = random(colorPalette);
+  stroke(color);
 
-    const x = canvasWidth / numberOfCols * col;
-    const startY = 0;
-    const endY = canvasHeight;
-    line(x, startY, x, endY);
+  // draw horizontally
+  if (!vertical) {
+    // calculate space it occupies
+    const y0 = random(height);
+    const segmentHeight = random(height - y0);
+
+    //draw a line every 2 pixels
+    for (let i = 0; i < segmentHeight / 4; i++) {
+      line(0, y0 + 4 * i, width, y0 + 4 * i);
+    }
   }
 
-  for (let row = 0; row < numberOfRows; row++) {
+  //draw vertically
+  if (vertical) {
+    //calculate space it occupies
+    const x0 = random(width);
+    const segmentHeight = random(width - x0);
 
-    const color = random(colorPalette);
-    stroke(color);
-    const y =  canvasHeight / numberOfRows * row;
-    const startX = 0;
-    const endX = canvasWidth;
-    line(startX, y, endX, y);
+    //draw a line every 4 pixels
+    for (let i = 0; i < segmentHeight / 4; i++) {
+      line(x0 + 4 * i, 0, x0 + 4 * i, height);
+    }
   }
 }
