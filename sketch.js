@@ -17,7 +17,7 @@ segments = 0;
 function drawVerticalLine(x0, y0, y1) {
   let inc = random(10);
   let prevX = x0;
-  let prevY = 0;
+  let prevY = y0;
   for (let y = y0 + 1; y < y1; y++) {
     let x = x0 + noise(inc) * 4;
     line(prevX, prevY, x, y);
@@ -29,7 +29,7 @@ function drawVerticalLine(x0, y0, y1) {
 
 function drawHorizontalLine(y0, x0, x1) {
   let inc = random(10);
-  let prevX = 0;
+  let prevX = x0;
   let prevY = y0;
   for (let x = x0 + 1; x < x1; x++) {
     let y = y0 + noise(inc) * 4;
