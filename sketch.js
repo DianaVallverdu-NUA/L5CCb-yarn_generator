@@ -67,15 +67,10 @@ function draw() {
 
   // draw horizontally
   if (!vertical) {
-    // calculate space it occupies
-    let y0 = random(height);
-    let segmentHeight = min(random(height - y0), 100);
-    let segment = new Segment(false, y0, segmentHeight);
+    let segment = new Segment(false);
 
     while (segment.isOverlapping(drawnSegments)) {
-      y0 = random(height);
-      segmentHeight = min(random(height - y0), 100);
-      segment = new Segment(false, y0, segmentHeight);
+      segment = new Segment(false);
     }
 
     segment.draw();
@@ -85,15 +80,10 @@ function draw() {
 
   //draw vertically
   if (vertical) {
-    //calculate space it occupies
-    let x0 = random(width);
-    let segmentWidth = min(random(width - x0), 150);
-    let segment = new Segment(true, x0, segmentWidth);
+    let segment = new Segment(true);
 
     while (segment.isOverlapping(drawnSegments)) {
-      x0 = random(width);
-      segmentWidth = min(random(width - x0), 150);
-      segment = new Segment(true, x0, segmentWidth);
+      segment = new Segment(true);
     }
 
     segment.draw();

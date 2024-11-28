@@ -1,9 +1,19 @@
 class Segment {
-  constructor(vertical, init, length) {
+  constructor(vertical) {
     this.vertical = vertical;
-    this.init = init;
-    this.length = length;
-    this.end = init + length;
+
+    if (vertical) {
+      this.init = random(width);
+      this.length = min(random(width - this.init), 150);
+    }
+
+    if (!vertical) {
+      // calculate space it occupies
+      this.init = random(height);
+      this.length = min(random(height - this.init), 100);
+    }
+
+    this.end = this.init + this.length;
   }
 
   draw() {
@@ -16,20 +26,20 @@ class Segment {
 
   individualOverlap(segment) {
     //if different directions, no overlap
-    if(this.vertical != segment.vertical) return false;
+    if (this.vertical != segment.vertical) return false;
 
     //check if overlap
-    if(this.init > segment.init && this.end < segment.end) return true;
-    if(this.init < segment.init && this.end > segment.end) return true;
-  
+    if (this.init > segment.init && this.end < segment.end) return true;
+    if (this.init < segment.init && this.end > segment.end) return true;
+
     //default to false
     return false;
   }
 
   isOverlapping(listOfSegments) {
     //check individual overlaps for a list of segments
-    for(let segment of listOfSegments) {
-      if(this.individualOverlap(segment)) return true;
+    for (let segment of listOfSegments) {
+      if (this.individualOverlap(segment)) return true;
     }
 
     //default to false
