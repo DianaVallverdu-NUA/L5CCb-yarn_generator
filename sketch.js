@@ -3,10 +3,6 @@ const canvasHeight = 300;
 
 const threadSpace = 2;
 
-const colorPalette = ["#f542d4", "#42f57b", "#42f5e9", "#4e42f5", "#c242f5"];
-
-let numberOfSegments = 0;
-
 let drawnSegments = [];
 
 function setup() {
@@ -58,12 +54,21 @@ function isOverLappingHorizontal(y0, y1) {
 }
 
 function draw() {
+  numberOfSegments = 0;
+  drawnSegments = [];
+  background(220);
+
+  for (let i = 0; i < 5; i++) {
+    drawYarn();
+  }
+}
+
+function drawYarn() {
   //direction 0 means horizontal, direction 1 means vertical
   const vertical = random(1) < 0.5;
 
   //got color for this bit
-  const color = random(colorPalette);
-  stroke(color);
+  stroke(random(255), random(255), random(255));
 
   // draw horizontally
   if (!vertical) {
@@ -89,14 +94,6 @@ function draw() {
     segment.draw();
 
     drawnSegments.push(segment);
-  }
-
-  //update counter and stop if needed
-  numberOfSegments++;
-  if (numberOfSegments > 5) {
-    numberOfSegments = 0;
-    drawnSegments = [];
-    background(220);
   }
 }
 
